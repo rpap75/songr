@@ -9,14 +9,31 @@
     <ul>
         <li th:each="album : ${albums}">
             <div th:text="${album.title}"></div>
-            <img src="" alt="Placeholder">
+            <img src="$" alt="PLACE HOLDER">
             <div>
                 <p th:text="${album.artist}">Artist</p>
-                <p th:text="${album.songCount}">SongCount</p>
+                <p th:text="${album.songCount}">Song Count</p>
                 <p th:text="${album.length}">Length</p>
             </div>
         </li>
     </ul>
+
+    <form action="/albums" method="POST">
+        <fieldset>
+            <legend>Add An Album</legend>
+            <label> Title</label>
+            <input type="text" name="title"/>
+            <label>Artist</label>
+            <input type="text" name="artist">
+            <label>Song Count</label>
+            <input type="number" name="songCount">
+            <label>Length</label>
+            <input type="text" name="length">
+            <label>Image</label>
+            <input type="text" name="imageUrl">
+            <input type="submit" value="Add Album">
+        </fieldset>
+    </form>
 </main>
 
 </body>

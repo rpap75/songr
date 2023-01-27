@@ -28,17 +28,17 @@ public class albumController {
     @GetMapping("/albums")
     public String getAllAlbums(Model m) {
         // first, create albums
-        Album album1 = new Album("Title", "Artist", 27, 27.59, "imageURL");
-        Album album2 = new Album("Title", "Artist", 27, 27.59, "imageURL");
-        Album album3 = new Album("Title", "Artist", 27, 27.59, "imageURL");
+//        Album album1 = new Album("Title", "Artist", 27, 27.59, "imageURL");
+//        Album album2 = new Album("Title", "Artist", 27, 27.59, "imageURL");
+//        Album album3 = new Album("Title", "Artist", 27, 27.59, "imageURL");
         // second, create an ArrayList to hold them
-        List<Album> albums = new ArrayList<>();
-        albums.add(album1);
-        albums.add(album2);
-        albums.add(album3);
+        List<Album> listAlbums = albumRepository.findAll();
+//        albums.add(album1);
+//        albums.add(album2);
+//        albums.add(album3);
         // then send the albums to the view
         // Using the Model, include key:value pairs
-        m.addAttribute("albums", albums);
+        m.addAttribute("albums", listAlbums);
         // return to the template of album
         return "albums.html";
     }
@@ -47,7 +47,7 @@ public class albumController {
     @PostMapping("/albums")
     public RedirectView createAnAlbum(String title, String artist, Integer songCount, Double length, String imageUrl) {
         Album album = new Album(title, artist, songCount, length, imageUrl);
-        AlbumRepository.save(album);
+        albumRepository.save(album);
         return new RedirectView("/albums");
     }
 }
