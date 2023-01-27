@@ -1,9 +1,6 @@
 package com.rpapSongr.helloWorld.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 
 import java.awt.*;
@@ -14,13 +11,18 @@ public class Album {
 
     //set up ID
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
 
     private String title;
     private String artist;
     private Integer songCount;
     private Double length;
     private String imageUrl;
+
+    @OneToMany(mappedBy = "album")
+    private List<Song> songs;
+
 
     protected Album() {
     }
@@ -34,6 +36,13 @@ public class Album {
         this.imageUrl = imageUrl;
     }
 
+    public List<Song> getSongs() {
+        return songs;
+    }
+
+    public void setSongs(List<Song> songs) {
+        this.songs = songs;
+    }
 
     public Long getId() {
         return id;
