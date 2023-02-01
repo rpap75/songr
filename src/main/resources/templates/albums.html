@@ -7,6 +7,7 @@
 <body>
 <main>
     <ul>
+        <a th:href="@{/albums/{/id}(id=${Album.id})}">Click Here To Go To This Album</a>
         <li th:each="album : ${albums}">
             <div th:text="${album.title}"></div>
             <img src="$" alt="PLACE HOLDER">
